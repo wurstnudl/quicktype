@@ -415,9 +415,6 @@ export class DartRenderer extends ConvenienceRenderer {
             enumType => [defined(this._enumValues.get(enumType)), ".reverse[", dynamic, "]"],
             unionType => {
                 const maybeNullable = nullableFromUnion(unionType);
-                //if (maybeNullable === null) {
-                //    return dynamic;
-                //}
                 return [dynamic, " == null ? null : ", this.toDynamicExpression(maybeNullable, dynamic)];
             },
             transformedStringType => {
@@ -534,7 +531,6 @@ export class DartRenderer extends ConvenienceRenderer {
             });
             this.indent(() => {
                 this.forEachClassProperty(c, "none", (name, jsonName, property) => {
-                    //this.emitLine('if json["', stringEscape(jsonName), '"] == null { return; }');
                     this.indent(() => {
                         this.emitLine(
                             name,
