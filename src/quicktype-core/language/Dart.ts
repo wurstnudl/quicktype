@@ -423,6 +423,8 @@ export class DartRenderer extends ConvenienceRenderer {
                         return [dynamic, ".toIso8601String()"];
                     case "date":
                         return [
+                            dynamic,
+                            " != null ? ",
                             '"${',
                             dynamic,
                             ".year.toString().padLeft(4, '0')",
@@ -430,7 +432,8 @@ export class DartRenderer extends ConvenienceRenderer {
                             dynamic,
                             ".month.toString().padLeft(2, '0')}-${",
                             dynamic,
-                            ".day.toString().padLeft(2, '0')}\""
+                            ".day.toString().padLeft(2, '0')}\"",
+                            ' : ""'
                         ];
                     default:
                         return dynamic;
